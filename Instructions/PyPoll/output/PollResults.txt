@@ -1,0 +1,17 @@
+Poll Results:
+
+Total votes: 3521001
+
+Unique Candidates: ['Khan', 'Correy', 'Li', "O'Tooley"]
+
+Khan total votes: 2218231, 63.00001050837531%
+
+Correy total votes: 704200, 19.999994319797125%
+
+Li total votes: 492940, 13.999996023857989%
+
+O'Tooley total votes: 105630, 2.999999147969569%
+
+All votes accounted for: True
+
+winner: Khan
