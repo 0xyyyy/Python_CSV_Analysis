@@ -15,17 +15,22 @@
 import os
 import csv 
 
+
+#Open the csv file and set delimiter to ',' 
 budget_data = os.path.join("budget_data.csv")
 with open(budget_data, 'r') as csvfile:
     next(csvfile)
     csvreader = csv.reader(csvfile, delimiter = ',')
+#set a variable equal to the total number of months of data within the csv
     total_months = sum(1 for row in csvreader)
     print(total_months)
 
+#define a function that will analyze any budget_data in the same format as the csv.
 def analysis(budget_data):
     total_months = 0 
     net_profit = 0
     current_month = 0 
+#set a variable lastmonth = None, use this to track current_change in logic statement 
     lastmonth = None
     current_change = 0 
     change = []
@@ -36,9 +41,11 @@ def analysis(budget_data):
         total_months += 1 
         current_month = int(row[1])
         net_profit = net_profit + current_month
+# track current_change in profit using the value stored in current_month and lastmonth
         if lastmonth is not None: 
             current_change = current_month - lastmonth
             change.append(current_change)
+# write logic statements that will update the months with max revenue and mininmum revenue based on current change. 
             if current_change > max_rev:
                 max_rev = current_change
                 maxmonth = month
@@ -49,6 +56,8 @@ def analysis(budget_data):
     average_change = sum(change)/len(change)
 
     return [total_months, net_profit, max_rev, min_rev, maxmonth, minmonth, average_change]
+
+# generate output summary by running function on the csv file
 with open(budget_data, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
     next(csvfile)
@@ -61,6 +70,7 @@ output_summary = print(
     average change: {analyzed[6]}
 """)
 
+# delcare output_path which will hold a text file with the analysis of the financials for that fiscal year. 
 output_path = os.path.join("..", "output", "financials.txt")
 
 if not os.path.isdir("../output"):
